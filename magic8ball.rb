@@ -27,9 +27,9 @@ answers = ["It is certain",
 magic_answer = answers[rand(0..answers.length)]
 
 message = @client.account.messages.create(
-	:from => "(424) 292-4469",
+	:from => "((424) 292-4469",
 	:to => "(310) 850-9896",
-	:body => "You asked #{question}. The Magic 8-Ball says: #{magic_answer}."
+	:body => "You asked #{question}. The Magic 8 Ball says: #{magic_answer}."
 )
 
 puts magic_answer
