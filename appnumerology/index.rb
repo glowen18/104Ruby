@@ -1,3 +1,5 @@
+require 'sinatra'
+
 puts "What is your birthdate in MMDDYYYY format?" 
 
 bd = gets 
@@ -24,7 +26,7 @@ when 1
 	message = "Your numerology number is #{birth_number}.  \nOne is the leader. The number one indicates the ability to stand alone, and is a strong vibration. Ruled by the Sun."
 
 when 2      
-	message = "Your numerology number is #{birth_number}.  \nThis is the mediator and peace-lover. The number two indicates the desire for harmony. It is a gentle, considerate, and sensitive vibration. \nRuled by the Moon."
+	message = "Your numerology number is #{birth_number}.\nThis is the mediator and peace-lover. The number two indicates the desire for harmony. It is a gentle, considerate, and sensitive vibration.\nRuled by the Moon."
 
 when 3 
 	message = "Your numerology number is #{birth_number}.  \n Number Three is a sociable, friendly, and outgoing vibration. Kind, positive, and optimistic, Three’s enjoy life and have a good sense of humor. \nRuled by Jupiter."
@@ -45,14 +47,20 @@ when 8
 	message =  "Your numerology number is #{birth_number}.  \nThis is the manager. Number Eight is a strong, successful, and material vibration. \nRuled by Saturn."
 
 when 9
-	message =  "Your numerology number is #{birth_number}.  \nThis is the teacher. Number Nine is a tolerant, somewhat impractical, and sympathetic vibration. \nRuled by Mars."
+	message =  "Your numerology number is #{birth_number}.  \nThis is the teacher. Number Nine is a tolerant, somewhat impractical, and sympathetic vibration. \nRuled by Mars."	
+
 else
 	message = "That does not compute."	
 	end
 end
 
-message = get_message(birth_number)
+get '/' do
+	"Hello World"
+end	
 
-puts message
-
-
+get '/:bd' do
+	bd = params[:bd]
+	birth_number = get_birth_number(bd)
+	message = get_message(birth_number)
+	"#{message}"	
+end	
