@@ -17,13 +17,6 @@ end
 	return number
 end
 
-def setup_index_view
-	birthdate = params[:birthdate]
-	birth_number = get_birth_number(birthdate)
-	@message = get_message(birth_number)
-	erb :index
-end
-
 birth_number = get_birth_number(bd)
 note = "It is very cool that this app can do this."
 
@@ -62,47 +55,26 @@ else
 		
 end
 
-=begin
-get ':birthdate' do
-	@setup_index_view = setup_index_view
-end
 
-post '/' do	
-	@setup_index_view = setup_index_view
-end	
-=end
 get '/' do
 	erb :form
 end
 
-post '/' do
- 	birth_number = get_birth_number(params[:birthdate])
- 	redirect "/message/#{birth_number}"
-end
-
-get '/message/:birth_number' do
-	birth_number = params[:birth_number].to_i
-	@message = get_message(birth_number)
-	erb :index
+post '/' do	
+	birth_number = get_birth_number(params[:birthdate])
 end	
 
-
-=begin
-post '/' do
-	"#{params}"
+get '/message/:birth_number' do
+	birth_number = params[:birthdate].to_i
+	@message = get_message(birth_number)
+	erb :index
 end
-=end
 
-
-=begin
-The following get requests were used prior to learning about forms.
 get '/newpage' do
 	@note = note
 	erb :newpage
-end	
+end
 
-#get '/:birthdate' do
-=end
 
 
 
