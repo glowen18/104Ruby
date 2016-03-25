@@ -36,10 +36,16 @@ end
 
 get '/:name' do
 	name = params[:name].capitalize
-	my_greeting = greeting(name)
-	"<h1>#{my_greeting}</h1>"
-end		
+	@my_greeting = greeting(name)
 
+	erb :home
+	
+end	
+
+get '/time/' do	
+	@time = determine_current_hour
+	erb :time
+end	
 
 
 
